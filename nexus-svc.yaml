@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nexus
+  namespace: devops
+  labels:
+    name: nexus
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8081
+      nodePort: 32201
+      protocol: TCP
+    - name: docker
+      port: 5000
+      targetPort: 5000
+      nodePort: 32202
+      protocol: TCP
+  selector:
+    name: nexus
